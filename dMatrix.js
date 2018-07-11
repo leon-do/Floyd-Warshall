@@ -1,11 +1,16 @@
 /*
+generates a two dimentional array
+dMatrix = distance Matrix
+u is the starting vertex
+v is the ending vertex
+[u][v] is the distance between u and v
+
 [ [ 0, Infinity, Infinity, Infinity ],
   [ Infinity, 0, Infinity, Infinity ],
   [ Infinity, Infinity, 0, Infinity ],
   [ Infinity, Infinity, Infinity, 0 ] ]
 */
-function minDistanceMatrix(vertices) {
-    // create a 2 dimensional matrix
+function dMatrix(vertices) {
     const matrix = []
     for (let u = 0; u < vertices; u++) {
         matrix[u] = []
@@ -23,4 +28,4 @@ function minDistanceMatrix(vertices) {
     return matrix
 }
 
-module.exports = { minDistanceMatrix }
+module.exports = { dMatrix }

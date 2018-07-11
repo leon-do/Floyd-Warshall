@@ -1,11 +1,16 @@
 /*
+generates a two dimentional array
+nMatrix = next Matrix
+u is the start vertex
+v is the end vertex
+[u][v] is number of jumps required to get to end vertex
+
 [ [ null, null, null, null ],
   [ null, null, null, null ],
   [ null, null, null, null ],
   [ null, null, null, null ] ]
 */
-function vertexMatrix(vertices) {
-    // create a 2 dimensional matrix
+function nMatrix(vertices) {
     const matrix = []
     for (let u = 0; u < vertices; u++) {
         matrix[u] = []
@@ -17,4 +22,4 @@ function vertexMatrix(vertices) {
     return matrix
 }
 
-module.exports = { vertexMatrix }
+module.exports = { nMatrix }
