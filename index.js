@@ -10,24 +10,29 @@ const distMatrix = dMatrix(vertices)
 // let nextMatrix be an array of vertex indices initialized to null
 const nextMatrix = nMatrix(vertices)
 
-// fill in data
-distMatrix[0][2] = -2
-nextMatrix[0][2] = 2
+// [ <source_exchange> <destination_exchange> <rate> ]
+const data = [
+    { source: 0, destination: 2, value: -2 },
+    { source: 2, destination: 3, value: 2 },
+    { source: 3, destination: 1, value: -1 },
+    { source: 1, destination: 0, value: 4 },
+    { source: 1, destination: 2, value: 3 }
+]
 
-distMatrix[2][3] = 2
-nextMatrix[2][3] = 3
+// loop through data to and update matrix
+for (i in data) {
+    const source = data[i].source
+    const destination = data[i].destination
+    const value = data[i].value
 
-distMatrix[3][1] = -1
-nextMatrix[3][1] = 1
-
-distMatrix[1][0] = 4
-nextMatrix[1][0] = 0
-
-distMatrix[1][2] = 3
-nextMatrix[1][2] = 2
+    // updating matrix
+    distMatrix[source][destination] = value
+    nextMatrix[source][destination] = destination
+}
 
 const floydWarshall = floydWarshallMatrix(distMatrix, nextMatrix)
-console.log(floydWarshall)
+
+const test = `{"distMatrix":[[0,-1,-2,0],[4,0,2,4],[5,1,0,2],[3,-1,1,0]],"nextMatrix":[[null,2,2,2],[0,null,0,0],[3,3,null,3],[1,1,1,null]]}`
+console.log(JSON.stringify(floydWarshall) === test)
 
 const path = shortestPath(1, 0, floydWarshall.nextMatrix)
-console.log(`the best path from 0 to 2 is ${path}`)
